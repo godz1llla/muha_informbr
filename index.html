@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informnews.kz - Аймақтық ақпарат агенттігі</title>
+
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Иконки Line Awesome -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <!-- Шрифт Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand': '#09090b', // zinc-950
+                        'brand-accent': '#fafafa',
+                    },
+                    borderRadius: {
+                        'premium': '1rem',
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                        'premium-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-color: #fafafa;
+        }
+
+        .brand-red {
+            background: #09090b; /* zinc-950 */
+        }
+
+        .text-brand-red {
+            color: #09090b;
+        }
+
+        .news-gradient {
+            background: linear-gradient(to top, rgba(9, 9, 11, 0.95) 0%, rgba(9, 9, 11, 0.2) 50%, transparent 100%);
+        }
+
+        /* Modern UI Elements */
+        .glass-nav {
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .premium-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #09090b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 flex flex-col min-h-screen text-slate-800">
+
+    <!-- === ТОП-БАР (РЕКЛАМА И ИНФО) === -->
+    <div class="bg-white border-b border-slate-200/60 py-2.5 hidden md:block text-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Левая часть: Баннер/QR -->
+            <div class="flex items-center space-x-4">
+                <div class="border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 bg-slate-50 shadow-sm">
+                    <i class="las la-qrcode text-3xl text-slate-900"></i>
+                    <div class="text-[11px] leading-tight font-medium text-slate-600">
+                        <strong class="text-slate-900 text-sm">Kaspi QR</strong><br>
+                        Газетке жазылу
+                    </div>
+                </div>
+            </div>
+
+            <!-- Правая часть: Инфо -->
+            <div class="flex items-center bg-slate-900 text-white rounded-xl px-5 py-2.5 space-x-6 text-sm font-medium shadow-sm">
+                <div class="flex items-center gap-2">
+                    <i class="las la-phone-volume text-lg text-slate-400"></i>
+                    <span>8 (7242) 27-01-01</span>
+                </div>
+                <div class="hidden lg:block text-xs text-slate-400">
+                    ЖШС "Syrdarya Media"<br>Қызылорда қ., Бейбарыс сұлтан, 1
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- === HEADER (ШАПКА) === -->
+    <header class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-between items-center">
+                <!-- Логотип -->
+                <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                    <div
+                        class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-md group-hover:scale-105 transition-transform">
+                        I
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-black tracking-tight text-slate-900 leading-none">Informnews</h1>
+                        <span class="text-sm font-semibold tracking-widest text-slate-400 uppercase mt-1 block">Ақпарат агенттігі</span>
+                    </div>
+                </a>
+
+                <!-- Погода и Курс -->
+                <div class="hidden md:flex items-center gap-6 text-sm font-medium bg-slate-50 border border-slate-200 rounded-2xl p-4 shadow-sm">
+                    <div class="text-right">
+                        <div class="text-slate-500 text-xs font-semibold">Қызылорда</div>
+                        <div class="text-lg font-bold text-slate-900 flex items-center justify-end gap-1.5 mt-0.5">
+                            <i class="las la-snowflake text-blue-500"></i> -8.5°C
+                        </div>
+                    </div>
+                    <div class="h-10 w-[1px] bg-slate-200"></div>
+                    <div class="text-right text-xs space-y-0.5 font-semibold text-slate-600">
+                        <div class="flex justify-between gap-4"><span>USD</span> <span class="text-slate-900">501.50</span></div>
+                        <div class="flex justify-between gap-4"><span>EUR</span> <span class="text-slate-900">545.20</span></div>
+                        <div class="flex justify-between gap-4"><span>RUB</span> <span class="text-slate-900">5.40</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- === МЕНЮ НАВИГАЦИИ === -->
+    <nav class="glass-nav border-b border-slate-200 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Ссылки -->
+                <ul class="flex space-x-8 py-5 font-semibold text-slate-500 text-[13px] overflow-x-auto whitespace-nowrap uppercase tracking-wider scrollbar-hide">
+                    <li class="nav-link hover:text-slate-900 cursor-pointer flex items-center gap-1.5"><i class="las la-bars text-lg"></i> МӘЗІР</li>
+                    <li class="nav-link active text-slate-900 cursor-pointer">ЖАҢАЛЫҚТАР</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">САЯСАТ</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">ҚОҒАМ</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">ЭКОНОМИКА</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">БІЛІМ</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">АУЫЛ ШАРУАШЫЛЫҒЫ</li>
+                    <li class="nav-link hover:text-slate-900 cursor-pointer">СПОРТ</li>
+                </ul>
+                <!-- Иконки справа -->
+                <div class="flex items-center space-x-5 text-slate-400 pl-6 border-l border-slate-200">
+                    <i class="las la-search cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
+                    <i class="las la-moon cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
+                    <span class="cursor-pointer hover:text-slate-900 font-bold text-xs tracking-widest bg-slate-100 px-2 py-1 rounded">KAZ</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === MAIN CONTENT (HERO) === -->
+    <main class="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Главная новость (Hero Left) -->
+        <a href="article.html" class="block lg:col-span-3 relative h-[450px] group cursor-pointer overflow-hidden rounded-2xl shadow-sm border border-slate-200">
+            <!-- Заглушка изображения -->
+            <img src="https://placehold.co/800x600/1e293b/FFF?text=Hero+Image"
+                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Main News">
+
+            <div class="absolute bottom-0 left-0 w-full news-gradient p-8 text-white">
+                <span class="bg-white text-slate-900 px-3 py-1 text-[10px] font-extrabold uppercase mb-4 inline-flex items-center gap-1.5 rounded-md tracking-widest">
+                    <i class="las la-star"></i> Басты жаңалық
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold leading-tight mb-4 group-hover:text-slate-300 transition-colors tracking-tight">Қызылорда облысында суды үнемдеудің жаңа технологиялары енгізіледі</h2>
+                <div class="flex items-center text-xs font-semibold text-slate-300 gap-6">
+                    <span class="flex items-center gap-1.5"><i class="las la-clock text-lg"></i> 11:30, Бүгін</span>
+                    <span class="flex items-center gap-1.5"><i class="las la-user-edit text-lg"></i> Гүлмира Сәдірқызы</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Сайдбар (Анонс/Правое меню) -->
+        <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+            <div class="bg-slate-50 border-b border-slate-200 text-slate-900 p-5 font-bold uppercase flex justify-between items-center text-sm tracking-wider">
+                <span class="flex items-center gap-2"><i class="las la-bolt text-lg"></i> Анонс</span>
+                <a href="#" class="text-slate-400 hover:text-green-500 transition-colors"><i class="lab la-whatsapp text-2xl"></i></a>
+            </div>
+
+            <!-- Список анонсов -->
+            <div class="divide-y divide-slate-100 flex-1 overflow-y-auto">
+                <!-- Item 1 -->
+                <a href="article.html" class="block p-5 hover:bg-slate-50 cursor-pointer flex gap-4 transition-colors group/item">
+                    <img src="https://placehold.co/100x100/1e293b/FFF?text=News" class="w-16 h-16 object-cover rounded-xl shadow-sm group-hover/item:scale-105 transition-transform">
+                    <div class="flex flex-col justify-center">
+                        <div class="text-[10px] font-bold text-slate-400 flex justify-between uppercase tracking-wider mb-1">
+                            <span class="flex items-center gap-1 text-slate-500"><i class="las la-map-marker text-sm"></i> Арал</span>
+                            <span>10:45</span>
+                        </div>
+                        <h4 class="text-sm font-semibold leading-tight text-slate-800 line-clamp-2 group-hover/item:text-slate-500 transition-colors">Арал ауданында балық шаруашылығы дамып келеді</h4>
+                    </div>
+                </a>
+
+                <!-- Item 2 -->
+                <a href="article.html" class="block p-5 hover:bg-slate-50 cursor-pointer flex gap-4 transition-colors group/item">
+                    <img src="https://placehold.co/100x100/444/FFF?text=Space" class="w-16 h-16 object-cover rounded-xl shadow-sm group-hover/item:scale-105 transition-transform">
+                    <div class="flex flex-col justify-center">
+                        <div class="text-[10px] font-bold text-slate-400 flex justify-between uppercase tracking-wider mb-1">
+                            <span class="flex items-center gap-1 text-slate-500"><i class="las la-map-marker text-sm"></i> Байқоңыр</span>
+                            <span>09:20</span>
+                        </div>
+                        <h4 class="text-sm font-semibold leading-tight text-slate-800 line-clamp-2 group-hover/item:text-slate-500 transition-colors">Байқоңыр айлағынан "Протон" зымыраны ұшырылды</h4>
+                    </div>
+                </a>
+
+                <!-- Item 3 -->
+                <a href="article.html" class="block p-5 hover:bg-slate-50 cursor-pointer flex gap-4 transition-colors group/item">
+                    <img src="https://placehold.co/100x100/555/FFF?text=Kaysar" class="w-16 h-16 object-cover rounded-xl shadow-sm group-hover/item:scale-105 transition-transform">
+                    <div class="flex flex-col justify-center">
+                        <div class="text-[10px] font-bold text-slate-400 flex justify-between uppercase tracking-wider mb-1">
+                            <span class="flex items-center gap-1 text-slate-500"><i class="las la-volleyball-ball text-sm"></i> Спорт</span>
+                            <span>Кеше</span>
+                        </div>
+                        <h4 class="text-sm font-semibold leading-tight text-slate-800 line-clamp-2 group-hover/item:text-slate-500 transition-colors">"Қайсар" футбол клубы Түркияда оқу-жаттығу жиынын өткізуде</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- === ЛЕНТА НОВОСТЕЙ === -->
+    <section class="container mx-auto px-4 mb-12">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                <span class="w-1.5 h-6 bg-slate-900 rounded-full block"></span>
+                Барлық жаңалықтар
+            </h2>
+            <a href="#" class="text-sm font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors">
+                Барлығын көру <i class="las la-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- News Card 1 -->
+            <a href="article.html" class="block bg-white group cursor-pointer rounded-2xl shadow-sm hover:shadow-md transition-all border border-slate-200 overflow-hidden flex flex-col">
+                <div class="relative h-56 overflow-hidden bg-slate-100">
+                    <img src="https://placehold.co/400x300/1e293b/FFF?text=Rice+Fields"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-900 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md shadow-sm">
+                        Ауыл шаруашылығы
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-[11px] text-slate-400 font-semibold mb-3 flex items-center gap-1.5">
+                        <i class="las la-calendar"></i> Бүгін, 21:30
+                    </div>
+                    <h3 class="text-xl font-bold leading-snug text-slate-900 group-hover:text-slate-600 transition-colors mb-3">
+                        Биылғы жылы Сыр өңірінде күріштен рекордтық өнім жиналды
+                    </h3>
+                    <p class="text-sm text-slate-500 leading-relaxed line-clamp-2 mt-auto">Өткен жылмен салыстырғанда өнімділік 15%-ға артқан...</p>
+                </div>
+            </a>
+
+            <!-- News Card 2 -->
+            <a href="article.html" class="block bg-white group cursor-pointer rounded-2xl shadow-sm hover:shadow-md transition-all border border-slate-200 overflow-hidden flex flex-col">
+                <div class="relative h-56 overflow-hidden bg-slate-100">
+                    <img src="https://placehold.co/400x300/3b82f6/FFF?text=Qyzylorda+City"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-900 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md shadow-sm">
+                        Инфрақұрылым
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-[11px] text-slate-400 font-semibold mb-3 flex items-center gap-1.5">
+                        <i class="las la-calendar"></i> Бүгін, 18:45
+                    </div>
+                    <h3 class="text-xl font-bold leading-snug text-slate-900 group-hover:text-slate-600 transition-colors mb-3">
+                        Қызылорда қаласында жылу электр орталығы жаңғыртылуда
+                    </h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">Құрылыс жұмыстары кестеге сай жүргізіліп жатыр...</p>
+                </div>
+            </a>
+
+            <!-- News Card 3 -->
+            <a href="article.html" class="block bg-white group cursor-pointer rounded-2xl shadow-sm hover:shadow-md transition-all border border-slate-200 overflow-hidden flex flex-col">
+                <div class="relative h-56 overflow-hidden bg-slate-100">
+                    <img src="https://placehold.co/400x300/10b981/FFF?text=Meetings"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-900 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md shadow-sm">
+                        Әкімдік
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col flex-1">
+                    <div class="text-[11px] text-slate-400 font-semibold mb-3 flex items-center gap-1.5">
+                        <i class="las la-calendar"></i> Кеше, 14:20
+                    </div>
+                    <h3 class="text-xl font-bold leading-snug text-slate-900 group-hover:text-slate-600 transition-colors mb-3">
+                        Облыс әкімі ауыл тұрғындарымен кездесу өткізді
+                    </h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mt-auto">Тұрғындар әлеуметтік мәселелер мен жол жөндеу жұмыстарын сұрады...</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- === ТАНЫМАЛ (POPULAR) === -->
+    <section class="bg-slate-900 py-16 text-white mb-0 border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <span class="w-1.5 h-6 bg-white rounded-full block"></span>
+                Танымал жаңалықтар
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <a href="article.html"
+                    class="block flex bg-slate-800/50 rounded-2xl overflow-hidden h-36 md:h-40 group cursor-pointer hover:bg-slate-800 transition-colors border border-white/5">
+                    <img src="https://placehold.co/200x200/555/FFF?text=Photo"
+                        class="w-1/3 object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="p-5 w-2/3 flex flex-col justify-center">
+                        <span class="text-xs text-slate-400 font-semibold mb-2 flex items-center gap-1.5"><i class="las la-clock text-lg"></i> 23 қаңтар 2026</span>
+                        <h3 class="font-bold text-lg leading-snug text-slate-100 group-hover:text-white line-clamp-3">Автокөлік жолдарын жөндеу стандарттары өзгереді</h3>
+                    </div>
+                    <div class="w-12 bg-white/5 group-hover:bg-white text-white group-hover:text-slate-900 transition-all flex items-center justify-center">
+                        <i class="las la-arrow-right text-xl"></i>
+                    </div>
+                </a>
+
+                <a href="article.html"
+                    class="block flex bg-slate-800/50 rounded-2xl overflow-hidden h-36 md:h-40 group cursor-pointer hover:bg-slate-800 transition-colors border border-white/5">
+                    <img src="https://placehold.co/200x200/666/FFF?text=Hospital"
+                        class="w-1/3 object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    <div class="p-5 w-2/3 flex flex-col justify-center">
+                        <span class="text-xs text-slate-400 font-semibold mb-2 flex items-center gap-1.5"><i class="las la-clock text-lg"></i> 21 қаңтар 2026</span>
+                        <h3 class="font-bold text-lg leading-snug text-slate-100 group-hover:text-white line-clamp-3">Көпбейінді облыстық ауруханаға жаңа жабдықтар алынды</h3>
+                    </div>
+                    <div class="w-12 bg-white/5 group-hover:bg-white text-white group-hover:text-slate-900 transition-all flex items-center justify-center">
+                        <i class="las la-arrow-right text-xl"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- === ФУТЕР === -->
+    <footer class="bg-slate-950 text-white pt-16 mt-auto">
+        <div
+            class="container mx-auto px-4 pb-12 border-b border-white/10 grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+            <!-- Branding -->
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-white text-slate-900 rounded-2xl flex items-center justify-center font-black text-2xl shadow-sm">I
+                    </div>
+                    <span class="font-black text-2xl tracking-tight leading-none">Informnews<br><span class="text-[10px] font-bold tracking-widest uppercase text-slate-400">Ақпарат агенттігі</span></span>
+                </div>
+                <h2 class="text-xl font-bold mb-3 text-slate-300">Соңғы жаңалықтардан <br>хабардар бол!</h2>
+                <div class="text-slate-500 text-sm font-medium">
+                    <i class="las la-envelope"></i> editor@informnews.kz
+                </div>
+            </div>
+
+            <!-- Stylized Map Placeholder (Canvas/Image representation) -->
+            <div class="flex justify-center opacity-20">
+                <i class="las la-map text-[120px]"></i>
+            </div>
+
+            <!-- Socials -->
+            <div class="flex flex-col md:items-end">
+                <div class="flex gap-4 text-3xl mb-6">
+                    <a href="https://t.me/+77470645196" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-telegram-plane"></i></a>
+                    <a href="https://www.instagram.com/informnews.kzo?igsh=b3l2c3V0aHc3cnZ3&utm_source=qr" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-instagram"></i></a>
+                    <a href="https://www.facebook.com/share/14cEZqwWsbo/?mibextid=wwXIfr" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-facebook-f"></i></a>
+                </div>
+                <div class="text-sm text-slate-500 font-medium text-left md:text-right">
+                </div>
+            </div>
+        </div>
+
+        <!-- Links Line -->
+        <div class="bg-black py-6 text-xs font-medium text-slate-500">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row flex-wrap justify-between items-center gap-4">
+                <div class="flex gap-6 uppercase tracking-wider">
+                    <a href="#" class="hover:text-white transition-colors">Жаңалықтар</a>
+                    <a href="#" class="hover:text-white transition-colors">Саясат</a>
+                    <a href="#" class="hover:text-white transition-colors">Қоғам</a>
+                    <a href="#" class="hover:text-white transition-colors">Жарнама</a>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

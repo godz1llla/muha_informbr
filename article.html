@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сыр өңірінде күріш жинау науқаны басталды - Informnews.kz</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Иконки Line Awesome -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+    <!-- Шрифт Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand': '#09090b', // zinc-950
+                        'brand-accent': '#fafafa',
+                    },
+                    borderRadius: {
+                        'premium': '1rem',
+                    },
+                    boxShadow: {
+                        'premium': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-color: #fafafa;
+        }
+
+        .brand-red {
+            background: #09090b;
+        }
+
+        .text-brand-red {
+            color: #09090b;
+        }
+
+        .border-brand-red {
+            border-color: #09090b;
+        }
+
+        /* Modern Typography */
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #334155;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .article-content h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            color: #0F172A;
+            letter-spacing: -0.025em;
+        }
+
+        .glass-nav {
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .btn-premium {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-premium:active {
+            transform: scale(0.97);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 flex flex-col min-h-screen text-slate-800">
+
+    <!-- === HEADER (ПОВТОРЯЕТСЯ С ГЛАВНОЙ) === -->
+    <div class="bg-white border-b border-slate-200/60 py-2.5 hidden md:block text-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Kaspi QR -->
+            <div class="flex items-center space-x-4">
+                <div class="border border-slate-200 rounded-xl p-2.5 flex items-center gap-3 bg-slate-50 shadow-sm">
+                    <i class="las la-qrcode text-3xl text-slate-900"></i>
+                    <div class="text-[11px] leading-tight font-medium text-slate-600">
+                        <strong class="text-slate-900 text-sm">Kaspi QR</strong><br>Газетке жазылу
+                    </div>
+                </div>
+            </div>
+            <!-- Info -->
+            <div class="flex items-center bg-slate-900 text-white rounded-xl px-5 py-2.5 space-x-6 text-sm font-medium shadow-sm">
+                <div>Қызылорда -5.0°C</div>
+                <div>27.01.2026</div>
+                <div class="border-l border-slate-700 pl-4">
+                    USD: 501.50 <br> EUR: 545.20
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white border-b border-slate-200">
+        <div class="container mx-auto px-4 py-8 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                <div
+                    class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-md group-hover:scale-105 transition-transform">
+                    I</div>
+                <div>
+                    <h1 class="text-3xl font-black tracking-tight text-slate-900 leading-none">Informnews</h1>
+                    <span class="text-sm font-semibold tracking-widest text-slate-400 uppercase mt-1 block">Ақпарат агенттігі</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <nav class="glass-nav border-b border-slate-200 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <ul class="flex space-x-8 py-5 font-semibold text-[13px] text-slate-500 uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-hide">
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors flex items-center gap-1.5"><i class="las la-bars text-lg"></i> МӘЗІР</li>
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ЖАҢАЛЫҚТАР</li>
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors">САЯСАТ</li>
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ҚОҒАМ</li>
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors">ЕЛ АУЗЫНДА</li>
+                    <li class="hover:text-slate-900 cursor-pointer transition-colors">СПОРТ</li>
+                </ul>
+                <div class="flex items-center space-x-5 text-slate-400 pl-6 border-l border-slate-200">
+                    <i class="las la-search cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
+                    <i class="las la-moon cursor-pointer hover:text-slate-900 text-xl transition-colors"></i>
+                    <span class="cursor-pointer hover:text-slate-900 font-bold text-xs tracking-widest bg-slate-100 px-2 py-1 rounded">KAZ</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === MAIN ARTICLE CONTAINER === -->
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Хлебные крошки -->
+        <div class="text-xs font-medium text-slate-500 mb-8 uppercase tracking-wide flex items-center gap-2">
+            <a href="index.html" class="hover:text-slate-900 transition flex items-center gap-1"><i class="las la-home text-sm mb-0.5"></i> Басты</a>
+            <i class="las la-angle-right opacity-40"></i>
+            <span class="text-slate-700 font-semibold flex items-center gap-1"><i class="las la-folder text-sm mb-0.5"></i> Қызылорда жаңалықтары</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
+            <!-- LEFT COLUMN (ARTICLE CONTENT) - 75% width -->
+            <div class="lg:col-span-3">
+
+                <!-- Заголовок -->
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight">
+                    Қызылордалық ғалымдар жаңа күріш сортын ойлап тапты
+                </h1>
+
+                <!-- Автор и Дата -->
+                <div class="flex flex-wrap items-center justify-between border-y border-slate-200 py-4 gap-4 mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-500 border border-slate-200 shadow-sm">
+                            <i class="las la-user text-xl"></i>
+                        </div>
+                        <div class="leading-tight">
+                            <div class="font-semibold text-slate-900 text-sm">Айдос Нұрпейіс</div>
+                            <div class="text-xs text-slate-500 font-medium flex items-center gap-1.5 mt-0.5">
+                                <i class="las la-clock"></i> 27.01.2026 14:30
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mr-2 hidden sm:block">
+                            Бөлісу:
+                        </div>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-50 text-slate-500 hover:bg-green-50 hover:text-green-600 flex items-center justify-center transition border border-slate-200 shadow-sm">
+                            <i class="lab la-whatsapp text-xl"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-xl bg-slate-50 text-slate-500 hover:bg-blue-50 hover:text-blue-600 flex items-center justify-center transition border border-slate-200 shadow-sm">
+                            <i class="lab la-telegram-plane text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Главное фото -->
+                <figure class="mb-10 rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-slate-50">
+                    <img src="https://placehold.co/800x500/10b981/FFF?text=Rice+Field+Technology"
+                        class="w-full h-auto object-cover" alt="Main News Image">
+                    <figcaption class="text-center text-xs text-slate-500 italic py-2 bg-slate-50">
+                        © "Informnews.kz"
+                    </figcaption>
+                </figure>
+
+                <div class="flex gap-6">
+                    <!-- Текст статьи -->
+                    <div class="article-content flex-1 max-w-none prose prose-slate">
+                        <p class="font-semibold text-lg text-slate-900">
+                            Бүгін Қызылорда облыстық ауыл шаруашылығы басқармасы жаңа "Сыр маржаны 2.0" сұрыпын
+                            таныстырды. Бұл туралы Informnews.kz тілшісі хабарлайды.
+                        </p>
+                        <p>
+                            Мамандардың айтуынша, жаңа сұрып суды аз қажет етеді және тұзды топыраққа төзімді. Соңғы
+                            жылдары өңірдегі су тапшылығы мәселесі диқандарды қатты алаңдатып отырғаны жасырын емес.
+                            Сондықтан ғалымдар 3 жыл бойы зерттеу жүргізіп, нәтижесінде осы сұрыпты шығарды.
+                        </p>
+                        <p>
+                            — Біз су үнемдеу технологияларын енгізуге мәжбүрміз. Жаңа сұрып 15-20% аз су ішеді, ал
+                            түсімділігі гектарына 60 центнерден кем түспейді, — деді агроном Берік Смағұлов.
+                        </p>
+                        <p>
+                            Сонымен қатар, жиында келесі егіс науқанына дайындық барысы да талқыланды. Техникалардың 90%
+                            қазірдің өзінде сайланып қойған.
+                        </p>
+                        <div class="bg-blue-50/50 border-l-[3px] border-slate-900 p-5 my-6 italic text-slate-700 rounded-r-xl shadow-sm text-[15px]">
+                            Айта кетейік, биылғы жылы Қызылорда облысында 89 мың гектар жерге күріш егілу жоспарлануда.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Теги -->
+                <div class="mt-8 pt-6 border-t border-slate-200 flex gap-3 flex-wrap items-center">
+                    <a href="#"
+                        class="bg-slate-50 border border-slate-200 hover:bg-slate-100 transition px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 uppercase tracking-wide flex items-center gap-1.5 shadow-sm">
+                        <i class="las la-tag"></i> Ауыл шаруашылығы
+                    </a>
+                    <a href="#"
+                        class="bg-slate-50 border border-slate-200 hover:bg-slate-100 transition px-4 py-1.5 rounded-full text-xs font-semibold text-slate-600 uppercase tracking-wide flex items-center gap-1.5 shadow-sm">
+                        <i class="las la-tag"></i> Күріш
+                    </a>
+                </div>
+
+                <!-- Блок Комментарии: Форма -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm mt-12 border border-slate-200">
+                    <h3 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+                        <span class="w-1.5 h-6 bg-slate-900 rounded-full block"></span>
+                        <i class="las la-comments text-slate-400 text-2xl"></i> Комментарии
+                    </h3>
+                    <div class="mb-4 relative">
+                        <i class="las la-pen absolute left-4 top-4 text-slate-400 text-lg"></i>
+                        <textarea
+                            class="w-full border border-slate-200 rounded-2xl pl-12 pr-4 py-3.5 text-sm focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition shadow-inner bg-slate-50 h-24"
+                            placeholder="Написать комментарий..."></textarea>
+                    </div>
+                    <button
+                        class="bg-slate-900 text-white hover:bg-slate-800 px-8 py-3.5 rounded-xl text-sm font-semibold shadow-md btn-premium flex items-center gap-2">
+                        <i class="las la-paper-plane text-lg"></i> Отправить
+                    </button>
+                    <p class="text-[11px] text-slate-400 mt-3 font-medium flex items-center gap-1"><i class="las la-info-circle text-sm"></i> Пікір модератор тексергеннен кейін жарияланады</p>
+                </div>
+
+                <!-- Блок Комментарии: Список (Пустой как на макете) -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-sm mt-6 border border-slate-200 min-h-[150px] flex flex-col justify-center items-center text-center">
+                    <i class="las la-comment-slash text-4xl text-slate-300 mb-2"></i>
+                    <div class="text-slate-400 text-sm font-medium">Нет комментариев. Будьте первым!</div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN (SIDEBAR) - 25% width -->
+            <aside class="lg:col-span-1 space-y-8">
+                <div class="sticky top-24">
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 overflow-hidden">
+                        <!-- Табы: Басты / Танымал -->
+                        <div class="flex mb-6 bg-slate-100 p-1 rounded-xl">
+                            <button class="flex-1 bg-white text-slate-900 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg shadow-sm">
+                                Басты
+                            </button>
+                            <button
+                                class="flex-1 text-slate-500 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg hover:text-slate-900 transition-colors">
+                                Танымал
+                            </button>
+                        </div>
+
+                        <!-- Лента новостей справа -->
+                        <div class="space-y-4">
+
+                            <!-- Item 1 -->
+                            <a href="article.html" class="block group cursor-pointer">
+                                <h4
+                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
+                                    "Қызылорда жылу электр орталығы" жаңғыртудан өтуде
+                                </h4>
+                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 13:45</div>
+                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
+                            </a>
+
+                            <!-- Item 2 -->
+                            <a href="article.html" class="block group cursor-pointer">
+                                <h4
+                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
+                                    Қайсар футбол клубы Түркияда оқу-жаттығу жиынын аяқтады
+                                </h4>
+                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 12:10</div>
+                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
+                            </a>
+
+                            <!-- Item 3 -->
+                            <a href="article.html" class="block group cursor-pointer">
+                                <h4
+                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
+                                    Қармақшы ауданында жаңа мектеп пайдалануға берілді
+                                </h4>
+                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 27.01.2026 10:30</div>
+                                <div class="border-b border-slate-100 mt-4 mb-4"></div>
+                            </a>
+
+                            <!-- Item 4 -->
+                            <a href="article.html" class="block group cursor-pointer">
+                                <h4
+                                    class="font-semibold text-slate-800 text-sm leading-snug group-hover:text-slate-500 transition-colors mb-1.5">
+                                    "Батыс Еуропа - Батыс Қытай" жолында көлік қозғалысы шектелді
+                                </h4>
+                                <div class="text-[11px] font-medium text-slate-400 flex items-center gap-1.5"><i class="las la-clock text-sm"></i> 26.01.2026 19:20</div>
+                            </a>
+
+                        </div>
+
+                        <!-- Кнопка Все новости -->
+                        <div class="mt-6">
+                            <a href="#"
+                                class="block w-full bg-slate-50 text-slate-900 border border-slate-200 text-center py-3 rounded-xl font-semibold text-sm hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
+                                Барлық жаңалықтар <i class="las la-arrow-right text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Рекламный баннер справа -->
+                    <div class="mt-6 bg-white rounded-3xl border border-slate-200 shadow-sm p-6 text-center">
+                        <div class="text-xs font-semibold text-slate-400 tracking-wider mb-4 flex items-center justify-center gap-2">
+                            <i class="las la-ad"></i> Жарнама
+                        </div>
+                        <div class="bg-slate-100 w-full h-48 flex items-center justify-center text-slate-400 rounded-2xl font-medium text-sm">
+                            Жарнама орны
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- === FOOTER (ПОВТОРЯЕТСЯ С ГЛАВНОЙ) === -->
+    <footer class="bg-slate-950 text-white pt-16 mt-auto">
+        <div class="container mx-auto px-4 pb-12 text-center border-b border-white/10">
+            <h2 class="text-3xl font-black uppercase mb-4 tracking-tight">Informnews</h2>
+            <p class="text-slate-500 text-sm mb-8 font-medium"></p>
+            <div class="flex justify-center gap-4 text-3xl mb-8">
+                <a href="https://t.me/+77470645196" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-telegram-plane"></i></a>
+                <a href="https://www.instagram.com/informnews.kzo?igsh=b3l2c3V0aHc3cnZ3&utm_source=qr" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-instagram"></i></a>
+                <a href="https://www.facebook.com/share/14cEZqwWsbo/?mibextid=wwXIfr" target="_blank" class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-white hover:text-slate-900 transition-colors"><i class="lab la-facebook-f"></i></a>
+            </div>
+        </div>
+        <div class="bg-black py-6 text-center">
+            <div class="text-xs font-medium text-slate-500">
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

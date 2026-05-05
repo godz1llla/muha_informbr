@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жаңа мақала қосу - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Стили для имитации редактора -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .wysiwyg-toolbar {
+            background: #f8fafc;
+            border-bottom: 1px solid #f1f5f9;
+            padding: 0.5rem;
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .wysiwyg-content {
+            min-height: 350px;
+            padding: 1.5rem;
+            outline: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #0f172a;
+        }
+
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: white !important;
+            border-bottom: 2px solid #0f172a;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        input,
+        textarea,
+        select {
+            transition: all 0.2s ease;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #0f172a !important;
+            box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.1) !important;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 font-sans">
+
+    <!-- Шапка (упрощенная) -->
+    <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-4 md:px-8 shadow-sm z-30">
+        <div class="font-bold flex items-center gap-2 md:gap-4">
+            <a href="admin.html" class="text-slate-500 hover:text-slate-900 transition-colors flex items-center gap-1 md:gap-2">
+                <i class="las la-arrow-left text-lg"></i>
+                <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-widest hidden sm:inline">Артқа</span>
+            </a>
+            <span class="text-slate-300 hidden sm:inline">|</span>
+            <span class="text-xs md:text-sm font-bold text-slate-900 tracking-tight line-clamp-1">Мақала қосу</span>
+        </div>
+        <button
+            class="text-[10px] md:text-[11px] font-bold uppercase tracking-widest bg-slate-900 hover:bg-slate-800 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-xl shadow-sm transition-colors flex items-center gap-1">
+            <i class="las la-save md:hidden text-lg"></i>
+            <span class="hidden md:inline">Сақтау (Save)</span>
+            <span class="md:hidden">Сақтау</span>
+        </button>
+    </header>
+
+    <div class="container mx-auto p-6">
+
+        <form action="/save_post.php" method="POST" enctype="multipart/form-data"
+            class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Левая колонка (70%) - Контент -->
+            <div class="lg:col-span-2 space-y-6">
+
+                <!-- Блок заголовка и контента с Табами -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl overflow-hidden">
+
+                    <!-- Tabs Header -->
+                    <div class="flex border-b border-slate-100">
+                        <button type="button"
+                            class="tab-btn active px-6 py-4 w-1/2 text-xs font-bold uppercase tracking-widest transition bg-slate-50 hover:bg-white"
+                            onclick="switchTab('kz')">
+                            🇰🇿 Қазақша (Негізгі)
+                        </button>
+                        <button type="button"
+                            class="tab-btn px-6 py-4 w-1/2 text-xs font-bold uppercase tracking-widest transition bg-slate-50 hover:bg-white text-slate-400"
+                            onclick="switchTab('ru')">
+                            🇷🇺 Русский (Перевод)
+                        </button>
+                    </div>
+
+                    <div class="p-8">
+
+                        <!-- QAZ TAB -->
+                        <div id="tab-kz" class="space-y-6">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2">Тақырып (QAZ)</label>
+                                <input type="text" name="title_kz"
+                                    class="w-full border border-slate-200 rounded-xl p-3 focus:ring-1 focus:ring-slate-900 text-slate-900 font-medium shadow-sm"
+                                    placeholder="Жаңалық тақырыбын жазыңыз...">
+                            </div>
+
+                            <!-- Визуальный редактор (Фейк) -->
+                            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="wysiwyg-toolbar border-b border-slate-200">
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-bold"></i></button>
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-italic"></i></button>
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-link"></i></button>
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-image"></i></button>
+                                    <div class="flex-grow"></div>
+                                    <button type="button" class="text-[10px] font-bold uppercase tracking-widest bg-slate-200 text-slate-600 px-3 py-1 rounded-lg hover:bg-slate-300 transition-colors">HTML</button>
+                                </div>
+                                <textarea name="content_kz" class="w-full wysiwyg-content resize-y border-0 focus:ring-0"
+                                    placeholder="Жаңалықтың мәтіні..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- RUS TAB (Скрыт по умолчанию) -->
+                        <div id="tab-ru" class="space-y-6 hidden">
+                            <div>
+                                <label class="block text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2">Заголовок (RU)</label>
+                                <input type="text" name="title_ru"
+                                    class="w-full border border-slate-200 rounded-xl p-3 focus:ring-1 focus:ring-slate-900 text-slate-900 font-medium shadow-sm"
+                                    placeholder="Введите заголовок...">
+                            </div>
+
+                            <!-- Визуальный редактор (Фейк RU) -->
+                            <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                                <div class="wysiwyg-toolbar border-b border-slate-200">
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-bold"></i></button>
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-italic"></i></button>
+                                    <button type="button" class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 rounded-lg text-slate-600 transition-colors"><i
+                                            class="las la-link"></i></button>
+                                </div>
+                                <textarea name="content_ru" class="w-full wysiwyg-content resize-y border-0 focus:ring-0"
+                                    placeholder="Текст новости..."></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SEO Section -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl p-8">
+                    <h3 class="font-bold text-slate-900 mb-6 flex items-center gap-2 tracking-tight text-lg">
+                        <i class="las la-search text-xl text-slate-400"></i> SEO параметрлер
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" name="slug" class="border border-slate-200 rounded-xl p-3 text-sm focus:ring-1 focus:ring-slate-900 shadow-sm"
+                            placeholder="URL-сілтеме (автоматты түрде)">
+                        <input type="text" name="keywords" class="border border-slate-200 rounded-xl p-3 text-sm focus:ring-1 focus:ring-slate-900 shadow-sm"
+                            placeholder="Кілт сөздер (тегтер)">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Правая колонка (30%) - Свойства -->
+            <div class="space-y-6">
+
+                <!-- Publish Box -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl p-6">
+                    <h3 class="font-bold text-[11px] uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2"><i class="las la-paper-plane text-lg"></i> Жариялау</h3>
+
+                    <div class="mb-5">
+                        <label class="flex items-center space-x-3 cursor-pointer">
+                            <input type="checkbox" name="status" checked
+                                class="text-slate-900 focus:ring-slate-900 h-5 w-5 rounded border-slate-300">
+                            <span class="text-sm font-bold text-slate-900">Сайтқа шығару (Active)</span>
+                        </label>
+                    </div>
+
+                    <div class="mb-5 text-sm">
+                        <label class="block text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-2">Шығу уақыты:</label>
+                        <input type="datetime-local" class="border border-slate-200 w-full p-2.5 rounded-xl text-slate-900 shadow-sm focus:ring-1 focus:ring-slate-900">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl shadow-sm transition-colors mb-2">
+                        Жариялау
+                    </button>
+                    <button type="button"
+                        class="w-full bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold uppercase tracking-widest py-3.5 rounded-xl transition-colors border border-slate-200">
+                        Черновикке сақтау
+                    </button>
+                </div>
+
+                <!-- Категории -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl p-6">
+                    <h3 class="font-bold text-[11px] uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2"><i class="las la-folder-open text-lg"></i> Категория</h3>
+                    <div class="space-y-3 max-h-48 overflow-y-auto p-1 text-sm font-medium text-slate-700">
+                        <label class="flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors"><input type="radio" name="cat" value="1" class="text-slate-900 focus:ring-slate-900 h-4 w-4">
+                            <span>Саясат</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors"><input type="radio" name="cat" value="2" class="text-slate-900 focus:ring-slate-900 h-4 w-4">
+                            <span>Экономика</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors"><input type="radio" name="cat" value="3" checked class="text-slate-900 focus:ring-slate-900 h-4 w-4">
+                            <span>Қоғам</span></label>
+                        <label class="flex items-center space-x-3 cursor-pointer hover:bg-slate-50 p-2 rounded-lg transition-colors"><input type="radio" name="cat" value="4" class="text-slate-900 focus:ring-slate-900 h-4 w-4">
+                            <span>Спорт</span></label>
+                    </div>
+                </div>
+
+                <!-- Main Image -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl p-6">
+                    <h3 class="font-bold text-[11px] uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2"><i class="las la-image text-lg"></i> Басты сурет</h3>
+                    <div
+                        class="border-2 border-dashed border-slate-200 rounded-2xl h-40 flex items-center justify-center cursor-pointer hover:border-slate-400 bg-slate-50 transition-colors">
+                        <div class="text-center text-slate-400">
+                            <i class="las la-cloud-upload-alt text-4xl mb-2"></i>
+                            <p class="text-[11px] font-bold uppercase tracking-widest">Жүктеу үшін басыңыз</p>
+                        </div>
+                        <input type="file" class="hidden">
+                    </div>
+                </div>
+
+                <!-- Attr Checkboxes -->
+                <div class="bg-white shadow-sm border border-slate-200 rounded-3xl p-6 text-sm font-medium text-slate-700">
+                    <label class="flex items-center space-x-3 mb-4 cursor-pointer">
+                        <input type="checkbox" name="is_featured" class="text-slate-900 focus:ring-slate-900 h-5 w-5 rounded border-slate-300">
+                        <span>Басты жаңалық (Слайдер)</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer">
+                        <input type="checkbox" name="is_announcement" class="text-slate-900 focus:ring-slate-900 h-5 w-5 rounded border-slate-300">
+                        <span>"Анонс" блогына қосу</span>
+                    </label>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <!-- JS для переключения вкладок (Без библиотек) -->
+    <script>
+        function switchTab(lang) {
+            // Скрываем все табы
+            document.getElementById('tab-kz').classList.add('hidden');
+            document.getElementById('tab-ru').classList.add('hidden');
+
+            // Убираем активность у кнопок
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'text-slate-900', 'font-bold');
+                btn.classList.add('text-slate-400');
+            });
+
+            // Показываем нужный таб
+            document.getElementById('tab-' + lang).classList.remove('hidden');
+
+            // Красим кнопку
+            const activeBtn = event.target;
+            activeBtn.classList.add('active', 'text-slate-900', 'font-bold');
+            activeBtn.classList.remove('text-slate-400');
+        }
+    </script>
+</body>
+
+</html>
