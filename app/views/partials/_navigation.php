@@ -176,13 +176,7 @@ $currency = $currency ?? ['usd_rate' => 502, 'eur_rate' => 545, 'rub_rate' => 5.
         <!-- Шапка меню -->
         <div class="flex justify-between items-center mb-10">
             <div class="flex items-center gap-4 group cursor-pointer">
-                <div class="w-12 h-12 bg-slate-900 dark:bg-white rounded-xl flex items-center justify-center text-white dark:text-slate-900 text-2xl font-black shadow-md">
-                    I
-                </div>
-                <div>
-                    <h1 class="text-2xl font-black tracking-tight text-slate-900 dark:text-white leading-none">Informnews</h1>
-                    <span class="text-[10px] font-semibold tracking-widest text-slate-400 uppercase mt-1 block">Ақпарат агенттігі</span>
-                </div>
+                <img src="/assets/logo.png" alt="Informnews" class="h-12 w-auto object-contain">
             </div>
             <button onclick="closeMobileMenu()"
                 class="w-12 h-12 rounded-full bg-slate-100 dark:bg-zinc-900 hover:bg-slate-900 dark:hover:bg-white transition-all flex items-center justify-center border border-slate-200 dark:border-white/10 group">

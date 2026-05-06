@@ -5,7 +5,7 @@
  */
 
 // Установка часового пояса
-date_default_timezone_set('Asia/Qyzylorda');
+date_default_timezone_set('Asia/Almaty');
 
 // Включаем отображение ошибок (отключить в продакшене)
 error_reporting(E_ALL);

@@ -23,6 +23,7 @@
  */
 
 // Загрузка конфигурации и классов
+date_default_timezone_set('Asia/Almaty');
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/core/Database.php';
 require_once __DIR__ . '/app/services/WeatherService.php';

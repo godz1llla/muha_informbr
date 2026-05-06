@@ -149,16 +149,7 @@
         class="bg-white dark:bg-zinc-950 border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
         <div class="container mx-auto px-4 py-8 flex justify-between items-center">
             <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="flex items-center gap-4 group cursor-pointer">
-                <div
-                    class="w-14 h-14 bg-slate-900 dark:bg-white rounded-2xl flex items-center justify-center text-white dark:text-slate-900 text-3xl font-black shadow-md group-hover:scale-105 transition-transform">
-                    I</div>
-                <div>
-                    <h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-none">
-                        Informnews</h1>
-                    <span
-                        class="text-sm font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase mt-1 block">Ақпарат
-                        агенттігі</span>
-                </div>
+                <img src="/assets/logo.png" alt="Informnews" class="h-16 w-auto group-hover:scale-105 transition-transform object-contain">
             </a>
         </div>
     </header>

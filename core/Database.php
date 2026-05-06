@@ -16,6 +16,7 @@ class Database
         try {
             $dsn = "mysql:host={$config['host']};dbname={$config['database']};charset={$config['charset']}";
             $this->pdo = new PDO($dsn, $config['username'], $config['password'], $config['options']);
+            $this->pdo->exec("SET time_zone = '+05:00'");
         } catch (PDOException $e) {
             die("Ошибка подключения к базе данных: " . $e->getMessage());
         }

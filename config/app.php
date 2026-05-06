@@ -14,7 +14,7 @@ return array (
     1 => 'ru',
   ),
   'brand_color' => '#1c3d81',
-  'timezone' => 'Asia/Qyzylorda',
+  'timezone' => 'Asia/Almaty',
   'pagination' => 15,
   'image_sizes' => 
   array (
