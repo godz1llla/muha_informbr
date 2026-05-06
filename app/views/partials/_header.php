@@ -149,7 +149,7 @@
         class="bg-white dark:bg-zinc-950 border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
         <div class="container mx-auto px-4 py-8 flex justify-between items-center">
             <a href="<?= $lang === 'ru' ? '/ru/' : '/' ?>" class="flex items-center gap-4 group cursor-pointer">
-                <img src="/logo.php" alt="Informnews" class="h-16 w-auto group-hover:scale-105 transition-transform object-contain">
+                <img src="/logo.php" alt="Informnews" class="h-20 md:h-28 lg:h-32 w-auto group-hover:scale-105 transition-transform object-contain">
             </a>
         </div>
     </header>

@@ -176,7 +176,7 @@ $currency = $currency ?? ['usd_rate' => 502, 'eur_rate' => 545, 'rub_rate' => 5.
         <!-- Шапка меню -->
         <div class="flex justify-between items-center mb-10">
             <div class="flex items-center gap-4 group cursor-pointer">
-                <img src="/logo.php" alt="Informnews" class="h-12 w-auto object-contain">
+                <img src="/logo.php" alt="Informnews" class="h-16 md:h-20 w-auto object-contain">
             </div>
             <button onclick="closeMobileMenu()"
                 class="w-12 h-12 rounded-full bg-slate-100 dark:bg-zinc-900 hover:bg-slate-900 dark:hover:bg-white transition-all flex items-center justify-center border border-slate-200 dark:border-white/10 group">
